@@ -1,0 +1,2 @@
+private $username = 'myuser';
+private $password = 'mypassword';

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Management</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .user-info-enhanced {
+            margin-left: auto;
+            background: #fff;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            min-width: 250px;
+        }
+
+        .user-label {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .user-balance-row {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .user-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .user-balance {
+            font-size: 16px;
+            background: #e3f7e8;
+            color: #2e7d32;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Game Actions */
+        .game-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-btn {
+            flex: 1;
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .game-btn:hover {
+            background-color: #0b7dda;
+        }
+
+        .game-btn.create {
+            background-color: #4CAF50;
+        }
+
+        .game-btn.create:hover {
+            background-color: #3e8e41;
+        }
+
+        .game-btn.join {
+            background-color: #2196F3;
+        }
+
+        .game-btn.join:hover {
+            background-color: #0b7dda;
+        }
+
+        /* Login Form */
+        .login-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 15px 0;
+            color: #888;
+            position: relative;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
+            z-index: -1;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 10px;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Transaction History */
+        .transaction-history {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .transaction-history h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+            }
+            
+            .user-info-enhanced {
+                margin: 0;
+                margin-bottom: 20px;
+                align-items: flex-start;
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .user-balance-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .game-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            button {
+                padding: 12px 15px;
+            }
+            
+            th, td {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="user-info-enhanced">
+            <div class="user-balance-row">
+                <span class="user-name">abcbe kebede</span>
+                <span class="user-balance">Balance: <strong>45</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-actions">
+        <button class="game-btn create">Create Game</button>
+        <button class="game-btn join">Join Game</button>
+        <button class="game-btn deposit">Deposit</button>
+        <button class="game-btn withdraw">Withdraw</button>
+    </div>
+
+    <div class="login-form">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button type="submit">Login</button>
+        <div class="divider"><span>or</span></div>
+        <button type="button">Register</button>
+        <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+        </div>
+    </div>
+
+    <div class="transaction-history">
+        <h2>Winner History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>User</th>
+                    <th>Amount</th>
+                    <th>Number</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>abcbe kebede</td>
+                    <td>100</td>
+                    <td>5</td>
+                    <td>July 12, 2025 5:21PM</td>
+                </tr>
+                <!-- Additional rows can be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Basic form interaction example
+        document.querySelector('.login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if(username && password) {
+                alert('Login successful!');
+            } else {
+                alert('Please enter both username and password');
+            }
+        });
+
+        // Game buttons functionality
+        document.querySelector('.game-btn.create').addEventListener('click', function() {
+            alert('Create Game button clicked!');
+        });
+        document.querySelector('.game-btn.join').addEventListener('click', function() {
+            alert('Join Game button clicked!');
+        });
+        document.querySelector('.game-btn.deposit').addEventListener('click', function() {
+            alert('Deposit button clicked!');
+        });
+        document.querySelector('.game-btn.withdraw').addEventListener('click', function() {
+            alert('Withdraw button clicked!');
+        });
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Basic validation
+            if(username && password) {
+                alert('Login successful!');
+                // Here you would typically send data to server
+            } else {
+                alert('Please enter both username and password');
+            }
+        });
+
+        // Game buttons functionality
+        document.querySelector('.game-btn.create').addEventListener('click', function() {
+            alert('Create Game button clicked!');
+            // Add your create game logic here
+        });
+
+        document.querySelector('.game-btn.join').addEventListener('click', function() {
+            alert('Join Game button clicked!');
+            // Add your join game logic here
+        });
+    </script>
+</body>
+</html>

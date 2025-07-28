@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chapa</title>
+<script src="https://js.chapa.co/v1/inline.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">LuckXXXXXXXXXXX</h1>
+    <div id="chapa-inline-form"></div>
+<script>
+
+const chapa = new ChapaCheckout({
+    publicKey: 'CHAPUBK_TEST-v8gQhO0BwmSBFgAUpaMktUcwfm3YDCzA',
+    amount: '100',
+    currency: 'ETB',
+    availablePaymentMethods: ['telebirr', 'cbebirr', 'ebirr', 'mpesa', 'chapa'],
+    customizations: {
+        buttonText: 'Pay Now',
+        styles: `
+            .chapa-pay-button { 
+                background-color: #4CAF50; 
+                color: white;
+            }
+        `
+    },
+    callbackUrl: 'https://yourdomain.com/callback',
+    returnUrl: 'https://yourdomain.com/success',
+});
+chapa.initialize('chapa-inline-form');
+</script>
+</body>
+</html> 
